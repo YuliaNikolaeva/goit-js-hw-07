@@ -57,14 +57,9 @@ const showSlides = (n) => {
     slideIndex = 1
   }
 
-  for (let i = 0; i < bigImages.length; i++) {
-    bigImages[i].style.display = 'none';
-  }
+  bigImages.forEach(bigImg => bigImg.style.display = 'none');
+  smallImages.forEach(smallImg => smallImg.classList.remove('active'));
 
-  for (let i = 0; i < smallImages.length; i++) {
-    smallImages[i].classList.remove('active');
- 
-  }
   bigImages[slideIndex - 1].style.display = 'block';
   smallImages[slideIndex - 1].classList.add('active')
 };
@@ -87,11 +82,11 @@ const toRight = () => {
 };
 
 const toPreview = (e) => {
-    for (let i = 0; i < smallImages.length + 1; i++) {
-    if(e.target.classList.contains('small') && e.target === smallImages[i-1]) {
-      currentSlide(i);
-    }
-  }
+  smallImages.forEach((smallImg, i) =>  {
+    if(e.target.classList.contains('small') && e.target === smallImages[i]) {
+      currentSlide(i + 1);
+      }
+  })
 }
 
 leftBtn.addEventListener('click', toLeft);
