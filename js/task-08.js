@@ -38,14 +38,12 @@ const createBox = (i) => {
 };
 
 const createBoxes = (amount) => {
-  for (let i = 0; i < amount; i+=1) {
-    container.append(createBox(i));
-  };
+  amount.forEach((element, idx) => container.append(createBox(idx)));
 };
 
 const getImputNumber = () => {
-  const amount = Number(imputNumber.value);
-  createBoxes(amount);
+  const arrAmount = Array(Number(imputNumber.value)).fill(' ')
+  createBoxes(arrAmount);
   imputNumber.value = '';
 };
 
